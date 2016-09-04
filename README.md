@@ -4,8 +4,8 @@
 
 ![polygyny](http://i.huffpost.com/gen/2955428/images/o-POLYGAMY-facebook.jpg)
 
-This description is actually rather accurate but it would be easier to explain
-it with trees, colours and arrow.
+This above description is actually rather accurate but it would be easier to
+explain it with trees, colours and arrow.
 
 You are given two trees (aka directed acyclic graphs), A and B. Each vertex of
 one tree has a set of available vertices of the other tree according to its
