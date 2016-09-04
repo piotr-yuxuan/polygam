@@ -121,7 +121,19 @@
      (siblingso q z))
    (nafc yap q)))
 
-(with-dbs [definitions favour kin]
-  (run* [q]
+(defn yap-treeo
+  "Nodes which are yapped or sons of yapped node. No parent are empeached. Top
+  node is also included."
+  [q]
+  (all
     (vertex q)
-    (empeachedo q)))
+    (nafc empeachedo q)
+    (fresh [p]
+      (conde [(tope q)]
+             [(kino p q)])
+      (nafc empeachedo p))))
+
+(with-dbs [definitions favour kin]
+  (distinct
+   (run* [q]
+         (yap-treeo q))))
