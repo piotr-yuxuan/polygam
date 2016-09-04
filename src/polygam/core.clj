@@ -41,36 +41,62 @@
           (db)
           (mapcat (fn [[k vv]] (map #(do [k %]) vv)) kinship)))
 
-(defn kino
-  [x y]
-  "A goal where x and y share kinship: x is an ancestor of y and y a descandant
-  of x. Beware edge effect: x given is not returned. This shows a pattern for an
-  order relation."
+(defn order-relationo
+  "Abstract the general pattern of a order relation in a logic, relational way."
+  [relation x y]
   (conde
-   [(child x y)]
+   [(relation x y)]
    [(fresh [z]
-      (child x z)
-      (kino z y))]))
+      (relation x z)
+      (order-relationo relation z y))]))
+
+(def kino
+  "A goal where the two inputs x and y share kinship: x is an ancestor of y and
+  y a descandant of x."
+  (partial order-relationo child))
 
 (defn tope
   "no parents"
   [x]
   (nafc #(fresh [u] (child u %)) x))
 
-(with-dbs [definitions favour kin]
+(with-dbs [definitions kin]
   (run* [q]
     (vertex q)
     (kino q :f)))
 
-(defn niko
-  "x, y father. Similar to childo but transitive relation. Symetric of kino, for
-  pedagogic purpose."
-  [x y]
-  (conde
-   [(child y x)]
-   [(fresh [z]
-      (child z x)
-      (niko z y))]))
+(defn leafo
+  "no descandants"
+  [x]
+  (nafc #(fresh [u] (child % u)) x))
+
+(with-dbs [definitions kin]
+  (run* [q]
+    (vertex q)
+    (leafo q)))
+
+(defn boundaryo
+  "Extrema of the order relation child"
+  [x]
+  (conde [(leafo x)]
+         [(tope x)]))
+
+(with-dbs [definitions kin]
+  (run* [q]
+    (vertex q)
+    (boundaryo q)))
+
+(defn siblingso
+  [x s]
+  (fresh [z]
+    (child z x)
+    (child z s)
+    (l/!= x s)))
+
+(with-dbs [definitions kin]
+  (run* [q]
+    (siblingso :l q)))
+
 (def favour
   (db
    [yap :a]
@@ -80,9 +106,22 @@
    [yap :m]
    ))
 
+(with-dbs [definitions favour kin]
+  (run* [q]
+    (vertex q)
+    (yap q)
+    (siblingso :l q)))
+
+(defn empeachedo
+  [q]
+  (all
+   (fresh [z]
+     (vertex z)
+     (yap z)
+     (siblingso q z))
+   (nafc yap q)))
 
 (with-dbs [definitions favour kin]
   (run* [q]
     (vertex q)
-    (niko q :f)
-    (kino :f q)))
+    (empeachedo q)))
