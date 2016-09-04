@@ -2,6 +2,8 @@
 
 > Choose as many spouses as you want
 
+![img](http://i.huffpost.com/gen/2955428/images/o-POLYGAMY-facebook.jpg)
+
 This description is actually rather accurate but it would be easier to explain
 it with trees, colours and arrow.
 
