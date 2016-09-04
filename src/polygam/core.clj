@@ -41,33 +41,6 @@
           (db)
           (mapcat (fn [[k vv]] (map #(do [k %]) vv)) kinship)))
 
-(defn children
-  [father]
-  (with-dbs [definitions favour kin]
-    (run* [q]
-      (project [father]
-               (child father q)))))
-
-(defn side-favouro
-  "fa (favour) can be yap or yuk. For example for yap, it returns v if eligible,
-  nothing if a sibling is yapped and it's not"
-  [node favour-fn output]
-  (fresh [father sibling]
-    (child father node)
-    (child father sibling)
-    (conda [(favour-fn sibling) (favour-fn node)]
-           ;;[(nafc favour-fn node) (log "f")]
-           )
-    (l/== output node)))
-
-(defn side-favour
-  [node favour-fn]
-  (with-dbs [definitions favour kin]
-    (run* [q]
-      (side-favouro node favour-fn q))))
-
-(side-favour :l yap)
-
 (defn kino
   [x y]
   "A goal where x and y share kinship: x is an ancestor of y and y a descandant
