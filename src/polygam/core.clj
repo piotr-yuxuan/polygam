@@ -137,3 +137,15 @@
   (distinct
    (run* [q]
          (yap-treeo q))))
+
+(defn yuk-treeo
+  [q]
+  (vertex q)
+  (conde [(yuk q)]
+         [(fresh [p]
+            (kino p q)
+            (yuk p))]))
+
+(with-dbs [definitions favour kin]
+  (run* [q]
+    (yuk-treeo q)))
