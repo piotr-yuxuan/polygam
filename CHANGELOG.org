@@ -14,9 +14,22 @@ CLOSED: [2016-09-03 Sat 22:22]
 CLOSED: [2016-09-03 Sat 22:22]
 ** DONE Start writing out this document
 CLOSED: [2016-09-03 Sat 22:22]
-* TODO Yap alone works
+* FOCUS Yap alone works
+** DONE Try to find the children of a node
+CLOSED: [2016-09-04 Sun 11:01]
+*** CANCELLED Try to find the max depth of children
+CLOSED: [2016-09-04 Sun 11:00]
+*** DONE Find the descandent items
+CLOSED: [2016-09-04 Sun 11:00]
+** DONE Find elements of the parental line
+CLOSED: [2016-09-04 Sun 11:00]
+** Yap yet to work
 * TODO Yuk alone works
 * TODO Yap and yuk work together
 * Refactor logic code to make it idiomatic
 Stop bullying poor core.logic
 No Bullshit, do real logic and wrangle against the doc
+* TODO Add another dimension to your code
+Untill now you just have one agent making a choice in a graph. Things actually
+get more real when you have another graph which vertices can also chose / be
+chosen.

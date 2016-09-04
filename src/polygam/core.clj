@@ -48,23 +48,66 @@
           (db)
           (mapcat (fn [[k vv]] (map #(do [k %]) vv)) kinship)))
 
-(defn available
-  []
+(defn children
+  [father]
   (with-dbs [definitions favour kin]
     (run* [q]
-      (fresh [a]
-        (vertex a)
-        (nafc yuk a)
-        (l/== q a)))))
+      (project [father]
+               (child father q)))))
 
-(comment "Let's build a relation for a very simple, atomic need: is this child
-besides a yapped one without being yapped itself?")
+(defn side-favouro
+  "fa (favour) can be yap or yuk. For example for yap, it returns v if eligible,
+  nothing if a sibling is yapped and it's not"
+  [node favour-fn output]
+  (fresh [father sibling]
+    (child father node)
+    (child father sibling)
+    (conda [(favour-fn sibling) (favour-fn node)]
+           ;;[(nafc favour-fn node) (log "f")]
+           )
+    (l/== output node)))
 
-(available)
+(defn side-favour
+  [node favour-fn]
+  (with-dbs [definitions favour kin]
+    (run* [q]
+      (side-favouro node favour-fn q))))
 
+(side-favour :l yap)
 
+(defn kino
+  [x y]
+  "A goal where x and y share kinship: x is an ancestor of y and y a descandant
+  of x. Beware edge effect: x given is not returned. This shows a pattern for an
+  order relation."
+  (conde
+   [(child x y)]
+   [(fresh [z]
+      (child x z)
+      (kino z y))]))
 
+(defn tope
+  "no parents"
+  [x]
+  (nafc #(fresh [u] (child u %)) x))
 
+(with-dbs [definitions favour kin]
+  (run* [q]
+    (vertex q)
+    (kino q :f)))
 
+(defn niko
+  "x, y father. Similar to childo but transitive relation. Symetric of kino, for
+  pedagogic purpose."
+  [x y]
+  (conde
+   [(child y x)]
+   [(fresh [z]
+      (child z x)
+      (niko z y))]))
 
-
+(with-dbs [definitions favour kin]
+  (run* [q]
+    (vertex q)
+    (niko q :f)
+    (kino :f q)))
