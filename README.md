@@ -2,7 +2,7 @@
 
 > Choose as many spouses as you want
 
-![img](http://i.huffpost.com/gen/2955428/images/o-POLYGAMY-facebook.jpg)
+![polygyny](http://i.huffpost.com/gen/2955428/images/o-POLYGAMY-facebook.jpg)
 
 This description is actually rather accurate but it would be easier to explain
 it with trees, colours and arrow.
@@ -30,6 +30,8 @@ relational algebra.
 ## Work path
 
 > Divide and conquer
+
+![graph](http://i.stack.imgur.com/s9wGx.png)
 
 Methinks compulsory to break this problem into smaller pieces that can fit my
 brain. Here are the ordained list of foreseen steps toward general resolution.
