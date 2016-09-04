@@ -11,13 +11,6 @@
 (def vertices
   [:a :b :c :d :e :f :g :h :i :j :k :l :m])
 
-(def favour
-  (db
-   [yap :a]
-   [yuk :c] ;; yuk
-   [yap :d]
-   [yap :e]))
-
 (def kinship
   {:a [:b :c]
    :b [:d :i]
@@ -105,6 +98,15 @@
    [(fresh [z]
       (child z x)
       (niko z y))]))
+(def favour
+  (db
+   [yap :a]
+   [yuk :c] ;; yuk
+   [yap :d]
+   [yap :e]
+   [yap :m]
+   ))
+
 
 (with-dbs [definitions favour kin]
   (run* [q]
