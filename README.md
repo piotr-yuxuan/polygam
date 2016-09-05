@@ -99,29 +99,9 @@ vertices in a tree.
 
 Consider the annotated draw of the same previous graph.
 
-```
-             *O
-             a
-            / \
-           /   \
-          /     \
-         /       \
-        /         \
-       /           \
-      /             \
-      *              *X
-      b              c
-     / \            / \
-    /   \          /   \
-   /     \        /     \
-   |      |      /       *
-   |      |     /        f
-   *O     |    *O      / | \
-   d      |    e      /  |  \
-  / \     |    |     /   |   \
- *   *    *    *    *    *    *
- g   h    i    j    k    l    m
-```
+> **__Warning, figure has got uploaded, text is outdated__**
+
+![graph](./doc/graph-sample.png)
 
 Vertices a, c and d and e have been added some marks. Nodes a, d and e are
 marked with O, meaning they have been elicited (yapped). Node c is rejected,
@@ -149,7 +129,7 @@ kept available.
 
 > Divide and conquer
 
-![graph](http://i.stack.imgur.com/s9wGx.png)
+![graph](http://scholasticadministrator.typepad.com/.a/6a00e54f8c25c988340163033d2321970d-200wi)
 
 Methinks compulsory to break this problem into smaller pieces that can fit my
 brain. Here are the ordained list of foreseen steps toward general resolution.
