@@ -26,9 +26,10 @@ CLOSED: [2016-09-04 Sun 11:00]
 CLOSED: [2016-09-04 Sun 11:00]
 ** DONE Yap yet to work
 CLOSED: [2016-09-04 Sun 22:01]
-* TODO Yuk alone works
+* DONE Yuk alone works
+CLOSED: [2016-09-04 Sun 23:35]
 * TODO Yap and yuk work together
-* Refactor logic code to make it idiomatic
+* TODO Refactor logic code to make it idiomatic
 Stop bullying poor core.logic
 No Bullshit, do real logic and wrangle against the doc
 * TODO Add another dimension to your code
