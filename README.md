@@ -6,7 +6,7 @@ TL;DR:
 
 ![polygyny](img/polygyny.jpeg)
 
-This description is actually rather accurate but it would be easier to explain
+This description above (about spouses) is actually rather accurate but it would be easier to explain
 it with trees, colours and arrow.
 
 You are given two trees (aka directed acyclic connected graphs), A and B. Each
