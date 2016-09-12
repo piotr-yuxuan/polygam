@@ -1,31 +1,53 @@
 # polygam
 
-> Choose as many spouses as you want
+TL;DR:
 
-![polygyny](http://i.huffpost.com/gen/2955428/images/o-POLYGAMY-facebook.jpg)
+> Choose as many spouses as you want according to your taste.
 
-This above description is actually rather accurate but it would be easier to
-explain it with trees, colours and arrow.
+![polygyny](img/polygyny.jpeg)
+
+This description is actually rather accurate but it would be easier to explain
+it with trees, colours and arrow.
 
 You are given two trees (aka directed acyclic connected graphs), A and B. Each
-vertex of one tree has a set of available vertices of the other tree according
-to its taste. The taste of a vertex is a set of logical rules. Let me remind it
-another time: a vertex from a tree is somehow linked to some set of vertices of
-the other tree. A vertex and its linked set can't be from the same tree.
+vertex of tree A has veen give some 'gutt', that's to say a set of logical
+rules. The gutt of A defines which vertices of B are available for it. In the
+same way, each vertex of B has some gutt which define which vertices of A are
+available for it.
 
-My goal in this project is to write such a function f which takes a vertex and
-returns all available vertices. It's really a perfect playground for logic
-programming. I've been trying to even use the smaller "constraint programming"
-which is relational thus more powerfull but sometimes less trivial to write.
+Let me say it another way: a vertex from a tree is somehow linked to some set of
+vertices of the other tree. A vertex and its linked set can't be from the same
+tree.
 
-This project currently barely stands as a draft. I'm still having painful time
-reasoning on this project so don't expect anything to be well-documented,
-crystal-clear; don't even expect any simple, beautiful design except the alien,
-mesmerising beauty of constraint programming.
+My goal in this project is to write such a function `availableo` which takes a
+vertex from a tree and returns all available vertices of the other tree. It's
+really a perfect playground for logic programming.
 
-I've been finding useful to see this problem from different viewpoint, hence you
-can still find vocabulary about genealogy, graph, match-making, logic and
-relational algebra.
+This project currently barely stands as a draft which I'm working on during my
+spare time. I've found useful to see this problem from different viewpoints,
+hence you can still find vocabulary about genealogy, graph, match-making, logic
+and relational algebra.
+
+## Content of this document
+
+* Literate introduction
+* Work path
+* Thanks
+* License
+
+I've found both necessary and interesting to keep writing documentation to my
+side projects as it helps to define more clearly your goals and where you are in
+relation to them. The [changelog](CHANGELOG.org) aims at keeping an up-to-date
+history of what has been done and what is left.
+
+Once redacted, this document will introduce the problem and the tools I've
+defined through a running example. This kind of literate programming should make
+very easy to understand the code. However, this is not an introduction from
+scratch. You can look up on the fly for the definition of things you don't know:
+
+* What is [a graph](wiki)
+* Learning [logic programming](reasoned schemer)
+* Getting started with [`core.logic`](swanodette gentle introduction)
 
 ## Tools
 
@@ -95,6 +117,64 @@ of any children of such a vertex.
 Some subtleties still have to be defined when you intertwinned yukked and yapped
 vertices in a tree.
 
+### Strategy to find the set of available vertices for a given node
+
+* Define what is a vertex
+* Define the child-parent relation between two vertices
+* Define gutt functions for what is rejected and what is elicited
+* Define the descendants of a rejected node
+* Define the descendants of an elicited node
+* Precise what it means to be a root of a graph, that's to say to have no parents
+* Precise what it means to be a leaf of a graph, that's to say to have no
+  children
+* Define what is being impeached
+* Explicit when a vertex both child of a rejected / impeached node and an
+  elicited node can be available or not
+
+### Step-by-step examples
+
+In this section, the relation `availableo` is constructed by step. Each step
+takes builds on the result of the previous one.
+
+The early version of this relation binds the value of a logic variable to all
+nodes which can are available for a given gutt and only these nodes.
+
+#### Step 0: all vertices
+
+#### Step 1: only keep vertices which are not explicitly rejected
+
+#### Step 2: go through sub-steps
+
+A soft-cut strategy is applied: ask each possible value the question of the
+sub-step: if it's a match then conditions apply and further questions are
+ignored; if it's a miss, go to next step and repeat the process. If no sub-steps
+are valid it fails. If one step is valid then further steps are ignored.
+
+See `condo` in the Reasoned Schemer of `conda` in `core.logic`.
+
+#### Step 2.0: has this vertex been explicitly chosen?
+
+If yes, it succeeds without any conditions.
+
+#### Step 2.1: is this vertex free from impeachment?
+
+If yes, it will succeed if and only if it's not a descandant of an explicitly
+rejected node. In equivalent terms, it will succeed if and only if it's
+impossible to find an explicitly rejected vertex whose this node descend from.
+
+#### Step 2.2: is this vertex impeached?
+
+If yes, it's a fail.
+
+#### Step 2.3: is this vertex son of both a rejected / impeached node and an elicited node?
+
+If yes, it succeeds.
+
+#### Step 2.4: is it impossible to find an explicitly rejected vertex whose this
+node descend from?
+
+If yes, it succeeds.
+
 ### Examples
 
 Consider the annotated draw of the same previous graph.
@@ -107,7 +187,7 @@ Vertices a, c and d and e have been added some marks. Nodes a, d and e are
 marked with O, meaning they have been elicited (yapped). Node c is rejected,
 hence given an X.
 
-Let's describe the expected behaviour of aforedfined goals:
+Let's describe the expected behaviour of aforedefined goals:
 
  * `yap-treeo` should allow vertices a, b, c, d, e, g, h, j. Vertex f and its
    children k, l, m are ignored because its sibling e has been elicited

@@ -9,15 +9,17 @@
 (declare yap yuk)
 
 (def vertices
-  [:a :b :c :d :e :f :g :h :i :j :k :l :m])
+  [:a :b :c :d :e :f :g :h :i :j :k :l :m :n :o :p :q])
 
 (def kinship
-  {:a [:b :c]
-   :b [:d :i]
-   :c [:e :f]
-   :d [:g :h]
-   :e [:j]
-   :f [:k :l :m]})
+  {:a [:b :m :c]
+   :b [:d :e :f]
+   :c [:h]
+   :e [:r]
+   :h [:i :j :k :l]
+   :m [:n :o]
+   :n [:g :q]
+   :q [:p]})
 
 (db-rel vertex
  ^:index x)
@@ -31,7 +33,7 @@
 (db-rel
  ^{:doc "Relationship for parents"}
  child ^:index x
- ^:index y)
+       ^:index y)
 
 (def definitions
   (reduce #(db-fact % vertex %2) (db) vertices))
@@ -100,11 +102,13 @@
 (def favour
   (db
    [yap :a]
-   [yuk :c] ;; yuk
-   [yap :d]
-   [yap :e]
-   [yap :m]
-   ))
+   [yap :c]
+   [yap :j]
+   [yap :k]
+   [yap :n]
+
+   [yuk :b]
+   [yuk :h]))
 
 (with-dbs [definitions favour kin]
   (run* [q]
@@ -112,7 +116,7 @@
     (yap q)
     (siblingso :l q)))
 
-(defn empeachedo
+(defn impeachedo
   [q]
   (all
    (fresh [z]
@@ -127,11 +131,11 @@
   [q]
   (all
     (vertex q)
-    (nafc empeachedo q)
+    (nafc impeachedo q)
     (fresh [p]
-      (conde [(tope q)]
+           (conde [(tope q)]
              [(kino p q)])
-      (nafc empeachedo p))))
+           (nafc impeachedo p))))
 
 (with-dbs [definitions favour kin]
   (distinct
@@ -149,3 +153,53 @@
 (with-dbs [definitions favour kin]
   (run* [q]
     (yuk-treeo q)))
+
+(defn son-of-yap-son-of-yuko [q]
+  (fresh [a b]
+    (kino a q)
+    (kino a b)
+    (kino b q)
+    (yuk a)
+    (yap b)
+    (l/!= a q)
+    (l/!= a b)
+    (l/!= b q)))
+
+(with-dbs [definitions favour kin]
+  (->
+   (run* [q]
+     (vertex q)
+     (nafc yuk q)
+     (conda [(tope q) (yap q)]
+            [(yap q)]
+            [(nafc impeachedo q)]
+            [(son-of-yap-son-of-yuko q)]))
+   sort))
+
+(defn availableo
+  [q]
+  (all
+    (vertex q)
+    (nafc yuk q)
+    (conda [(tope q) (yap q)]
+           [(yap q)]
+           [(nafc impeachedo q) (nafc yuk-treeo q)]
+           [(impeachedo q) fail]
+           [(son-of-yap-son-of-yuko q)]
+           [(nafc yuk-treeo q)])))
+
+(with-dbs [definitions favour kin]
+  (sort
+   (time (run* [q]
+           (availableo q)))))
+
+(with-dbs [definitions favour kin]
+  (sort
+   (time (run* [q]
+           (vertex q)
+           (nafc yuk q)
+           (conda [(yap q)]
+                  [(nafc impeachedo q) (nafc yuk-treeo q)]
+                  [(impeachedo q) fail]
+                  [(son-of-yap-son-of-yuko q)]
+                  [(nafc yuk-treeo q)])))))
