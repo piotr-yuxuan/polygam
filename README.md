@@ -45,9 +45,9 @@ defined through a running example. This kind of literate programming should make
 very easy to understand the code. However, this is not an introduction from
 scratch. You can look up on the fly for the definition of things you don't know:
 
-* What is [a graph](wiki)
-* Learning [logic programming](reasoned schemer)
-* Getting started with [`core.logic`](swanodette gentle introduction)
+* What is [a graph](https://en.wikipedia.org/wiki/Graph_(discrete_mathematics))
+* Learning [logic programming](https://mitpress.mit.edu/books/reasoned-schemer)
+* Getting started with [`core.logic`](https://github.com/swannodette/logic-tutorial) ([code here](https://github.com/clojure/core.logic))
 
 ## Tools
 
