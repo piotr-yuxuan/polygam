@@ -119,16 +119,15 @@ vertices in a tree.
 
 ### Strategy to find the set of available vertices for a given node
 
-* Define what is a vertex
-* Define the child-parent relation between two vertices
-* Define gutt functions for what is rejected and what is elicited
-* Define the descendants of a rejected node
-* Define the descendants of an elicited node
-* Precise what it means to be a root of a graph, that's to say to have no parents
-* Precise what it means to be a leaf of a graph, that's to say to have no
-  children
-* Define what is being impeached
-* Explicit when a vertex both child of a rejected / impeached node and an
+#### Define what is a vertex
+#### Define the child-parent relation between two vertices
+#### Define gutt functions for what is rejected and what is elicited
+#### Define the descendants of a rejected node
+#### Define the descendants of an elicited node
+#### Precise what it means to be a root of a graph, that's to say to have no parents
+#### Precise what it means to be a leaf of a graph, that's to say to have no children
+#### Define what is being impeached
+#### Explicit when a vertex both child of a rejected / impeached node and an
   elicited node can be available or not
 
 ### Step-by-step examples
@@ -136,12 +135,54 @@ vertices in a tree.
 In this section, the relation `availableo` is constructed by step. Each step
 takes builds on the result of the previous one.
 
-The early version of this relation binds the value of a logic variable to all
-nodes which can are available for a given gutt and only these nodes.
+The early version of this relation `availablero` binds the value of a logic
+variable to all nodes which can are available for a given gutt and only these
+nodes. How to get such a relation?
+
+#### Step -1: Anything
+
+    (run* [q])
+
+`=> (_0)` because there is no rule of constraint on the variable.
 
 #### Step 0: all vertices
 
+We use the facts defined in `definitions` as the definition of what a vertex is.
+
+    (with-dbs [definitions]
+      (run* [q]
+        (vertex q)))
+
+`=> (:a :b :c :d :e :f :g :h :i :j :k :l :m :n :o :p :q)` all nodes are here.
+I've added an implicit call to `sort` to make the result more human friendly.
+
 #### Step 1: only keep vertices which are not explicitly rejected
+
+Let's bind the logic variable to any node which has been explicitly rejected:
+
+    (with-dbs [definitions favour]
+      (run* [q]
+        (yuk q))))
+
+`=> (:b :h)` it seems to work well, let's go further and use _negation as a
+failure_ to retrieve all the values for which it's impossible to match the goal
+`yuk`.
+
+    (with-dbs [definitions favour]
+      (run* [q]
+        (nafc yuk q))))
+
+outputs something like `=> (_0)` because the logic variable can be anything,
+provided that *anything* doesn't match the goal `yuk`. You need to narrow the
+possible values of the logic variable to all vertices:
+
+    (with-dbs [definitions favour]
+      (run* [q]
+        (vertex q)
+        (nafc yuk q))))
+
+`=> (:a :c :d :e :f :g :i :j :k :l :m :n :o :p :q)` from which `:b` and `:h`
+have been removed.
 
 #### Step 2: go through sub-steps
 
@@ -152,11 +193,27 @@ are valid it fails. If one step is valid then further steps are ignored.
 
 See `condo` in the Reasoned Schemer of `conda` in `core.logic`.
 
+The final form of this step can be found in the code. Only simple sub-steps are
+shown here.
+
 #### Step 2.0: has this vertex been explicitly chosen?
 
-If yes, it succeeds without any conditions.
+    (with-dbs [definitions favour]
+      (run* [q]
+        (yap q))))
+
+`=> (:a :c :j :k :n)`
+
+If yes, it succeeds without any conditions. Here, it means the logic variable
+the goal `availableo` is dealing with will be able to take the value which
+succeeds here.
 
 #### Step 2.1: is this vertex free from impeachment?
+
+    (with-dbs [definitions favour]
+      (run* [q]
+        (vertex q)
+        (nafc impeachedo q)))
 
 If yes, it will succeed if and only if it's not a descandant of an explicitly
 rejected node. In equivalent terms, it will succeed if and only if it's
@@ -164,16 +221,43 @@ impossible to find an explicitly rejected vertex whose this node descend from.
 
 #### Step 2.2: is this vertex impeached?
 
+    (with-dbs [definitions favour]
+      (run* [q]
+        (vertex q)
+        (impeachedo q)))
+
 If yes, it's a fail.
 
 #### Step 2.3: is this vertex son of both a rejected / impeached node and an elicited node?
 
+The following code has been wrapped into a named goal: `son-of-yap-son-of-yuko`.
+
+    (with-dbs [definitions favour kin]
+      (run* [q]
+        (fresh [a b]
+          (kino a q)
+          (kino a b)
+          (kino b q)
+          (yuk a)
+          (yap b)
+          (l/!= a q)
+          (l/!= a b)
+          (l/!= b q))))
+
 If yes, it succeeds.
 
-#### Step 2.4: is it impossible to find an explicitly rejected vertex whose this
-node descend from?
+**TODO: infortunately, the current graph sampe doesn't show this case**
+
+#### Step 2.4: is it impossible to find an explicitly rejected vertex whose this node descend from?
+
+    (with-dbs [definitions favour kin]
+      (run* [q]
+        (vertex q)
+        (nafc yuk-treeo q)))
 
 If yes, it succeeds.
+
+#### Put everything together
 
 ### Examples
 
