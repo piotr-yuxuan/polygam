@@ -26,7 +26,7 @@ Last word about not least performance: the two strageties implemented here give:
 "Elapsed time: 324.399578 msecs"
 "Elapsed time: 299.373844 msecs"
 ```
-- Wrapped by (map identity):
+- Wrapped by `(map identity)`:
 ``` Clojure
 "Elapsed time: 9.429092 msecs"
 "Elapsed time: 8.881946 msecs"
