@@ -201,7 +201,7 @@ succeeds here.
   (run* [q]
     (vertex q)
     (nafc impeachedo q)))
-```Clojure
+```
 If yes, it will succeed if and only if it's not a descandant of an explicitly
 rejected node. In equivalent terms, it will succeed if and only if it's
 impossible to find an explicitly rejected vertex whose this node descend from.
