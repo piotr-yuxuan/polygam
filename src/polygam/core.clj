@@ -10,17 +10,19 @@
   (:gen-class))
 
 (with-dbs [definitions favour kin]
-  (-> (run* [q]
+  "Use relational goals"
+  (->> (run* [q]
         (vertex q)
         (acc/availableo q))
-      doall
-      time
-      sort))
+       doall;;(map identity)
+       time
+       sort))
 
 (with-dbs [definitions favour kin]
-  (-> (run* [q]
+  "Use on-relational goals"
+  (->> (run* [q]
         (vertex q)
         (sub/availableo q))
-      doall
-      time
-      sort))
+       doall;;(map identity)
+       time
+       sort))
