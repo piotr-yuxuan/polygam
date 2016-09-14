@@ -132,6 +132,8 @@ vertices in a tree.
 
 ### Step-by-step examples
 
+![polygyny](doc/graph-sample.png)
+
 In this section, the relation `availableo` is constructed by step. Each step
 takes builds on the result of the previous one.
 
