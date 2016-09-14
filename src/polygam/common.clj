@@ -6,7 +6,7 @@
   (:require [clojure.core.logic.arithmetic :as ar]
             [clojure.core.logic.fd :as fd]))
 
-(defn order-relationo
+(defn- order-relationo
   "Abstract the general pattern of a strict order relation in a logic,
   relational way."
   [relation x y]

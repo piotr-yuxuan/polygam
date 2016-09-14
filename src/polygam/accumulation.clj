@@ -42,22 +42,14 @@
     (l/!= q c)))
 
 (defn c4o
-  "Ill-designed"
   [q]
   (fresh [a b]
     (kino a q)
     (kino b q)
+    (yap a)
     (conde [(yuk b)]
-           [(fresh [z c]
-              (kino z b)
-              (kino z c)
-              (yap c)
-              (nafc yap b)
-              (nafc yuk b))])
-    (fresh [c]
-      (yap c)
-      (kino c q)
-      (kino b c))))
+           [(empeachedo b)])
+    (kino b a)))
 
 (defn c5o
   [q]
