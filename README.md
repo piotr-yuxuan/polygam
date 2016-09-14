@@ -19,6 +19,18 @@ My goal in this project is to write such a function `availableo` which takes a
 vertex from a tree and returns all available vertices of the other tree. It's
 really a perfect playground for logic programming.
 
+Last word about not least performance: the two strageties implemented here give:
+
+- Wrapped by `doall`:
+``` Clojure
+"Elapsed time: 324.399578 msecs"
+"Elapsed time: 299.373844 msecs"
+```
+- Wrapped by (map identity):
+``` Clojure
+"Elapsed time: 9.429092 msecs"
+"Elapsed time: 8.881946 msecs"
+``` 
 > End of TL;DR
 
 Let me say it another way: a vertex from a tree is somehow linked to some set of
