@@ -19,18 +19,13 @@ My goal in this project is to write such a function `availableo` which takes a
 vertex from a tree and returns all available vertices of the other tree. It's
 really a perfect playground for logic programming.
 
-Last word about not least performance: the two strageties implemented here give:
+Last but not least word about performance: the two strageties implemented here give:
 
-- Wrapped by `doall`:
-``` Clojure
-"Elapsed time: 324.399578 msecs"
-"Elapsed time: 299.373844 msecs"
-```
-- Wrapped by `(map identity)`:
 ``` Clojure
 "Elapsed time: 9.429092 msecs"
 "Elapsed time: 8.881946 msecs"
 ``` 
+
 > End of TL;DR
 
 Let me say it another way: a vertex from a tree is somehow linked to some set of
@@ -139,6 +134,7 @@ nodes. How to get such a relation?
 ```Clojure
 (run* [q])
 ```
+
 `=> (_0)` because there is no rule of constraint on the variable.
 
 #### Step 0: all vertices
@@ -163,23 +159,28 @@ Let's bind the logic variable to any node which has been explicitly rejected:
   (run* [q]
     (yuk q))))
 ```
+
 `=> (:b :h)` it seems to work well, let's go further and use _negation as a
 failure_ to retrieve all the values for which it's impossible to match the goal
 `yuk`.
+
 ```Clojure
 (with-dbs [definitions favour]
   (run* [q]
     (nafc yuk q))))
 ```
+
 outputs something like `=> (_0)` because the logic variable can be anything,
 provided that *anything* doesn't match the goal `yuk`. You need to narrow the
 possible values of the logic variable to all vertices:
+
 ```Clojure
 (with-dbs [definitions favour]
   (run* [q]
     (vertex q)
     (nafc yuk q))))
 ```
+
 `=> (:a :c :d :e :f :g :i :j :k :l :m :n :o :p :q)` from which `:b` and `:h`
 have been removed.
 
@@ -196,11 +197,13 @@ The final form of this step can be found in the code. Only simple sub-steps are
 shown here.
 
 #### Step 2.0: has this vertex been explicitly chosen?
+
 ```Clojure
 (with-dbs [definitions favour]
   (run* [q]
     (yap q))))
 ```
+
 `=> (:a :c :j :k :n)`
 
 If yes, it succeeds without any conditions. Here, it means the logic variable
@@ -208,28 +211,33 @@ the goal `availableo` is dealing with will be able to take the value which
 succeeds here.
 
 #### Step 2.1: is this vertex free from impeachment?
+
 ```Clojure
 (with-dbs [definitions favour]
   (run* [q]
     (vertex q)
     (nafc impeachedo q)))
 ```
+
 If yes, it will succeed if and only if it's not a descandant of an explicitly
 rejected node. In equivalent terms, it will succeed if and only if it's
 impossible to find an explicitly rejected vertex whose this node descend from.
 
 #### Step 2.2: is this vertex impeached?
+
 ```Clojure
 (with-dbs [definitions favour]
   (run* [q]
     (vertex q)
     (impeachedo q)))
 ```
+
 If yes, it's a fail.
 
 #### Step 2.3: is this vertex son of both a rejected / impeached node and an elicited node?
 
 The following code has been wrapped into a named goal: `son-of-yap-son-of-yuko`.
+
 ```Clojure
 (with-dbs [definitions favour kin]
   (run* [q]
@@ -243,6 +251,7 @@ The following code has been wrapped into a named goal: `son-of-yap-son-of-yuko`.
       (l/!= a b)
       (l/!= b q))))
 ```
+
 If yes, it succeeds.
 
 #### Step 2.4: is it impossible to find an explicitly rejected vertex whose this node descend from?
@@ -253,6 +262,7 @@ If yes, it succeeds.
     (vertex q)
     (nafc yuk-treeo q)))
 ```
+
 If yes, it succeeds.
 
 ## Thanks

@@ -14,7 +14,6 @@
   (->> (run* [q]
         (vertex q)
         (acc/availableo q))
-       doall;;(map identity)
        time
        sort))
 
@@ -23,6 +22,5 @@
   (->> (run* [q]
         (vertex q)
         (sub/availableo q))
-       doall;;(map identity)
        time
        sort))
