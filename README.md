@@ -22,8 +22,8 @@ really a perfect playground for logic programming.
 Last but not least word about performance: the two strageties implemented here give:
 
 ``` Clojure
-"Elapsed time: 9.429092 msecs"
-"Elapsed time: 8.881946 msecs"
+"Elapsed time: 633.909367 msecs"
+"Elapsed time: 432.91587 msecs"
 ``` 
 
 > End of TL;DR
