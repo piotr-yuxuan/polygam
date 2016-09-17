@@ -69,6 +69,10 @@ have been removed.
 
 ## Step 2: avoid inconsistent parents
 
+In this graph, state of vertex `p'` is inconsistent and can't be clearly decided
+because it has both a yap parent and a yuk parent. By default, such an
+inconsistent node should be removed.
+
 ```Clojure
 (with-dbs [definitions favour kin]
   (run* [q]
