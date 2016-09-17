@@ -7,21 +7,6 @@
   (:require [clojure.core.logic.arithmetic :as ar]
             [clojure.core.logic.fd :as fd]))
 
-(comment
-  "Several possible explicit configurations:"
-  "C1 If you're yap, you are available"
-  "C2 If you're yuk, you're not available"
-  "C3 If you are the sibling of a yapped node without being yapped yourself, you
-  are not available: you are empeached"
-  "C4 If amongst your parents can be found both yap yuk and empeached nodes,
-  you're available if and only if: 1) every empeached parent is the parent of a
-  yap node and 2) every yuk parent is the parent of a yap node"
-  "C5 If amongst your parents can be found yap nodes and can be found neither
-  yuk nor empeached nodes, you're available."
-  ""
-  "C4bis C4 can be rewritten: If amongst your parents can be found both yap yuk and empeached node,
-  you're not available if and only if one can find one empeached parent node
-  which is not parent of a yap node")
 (def c1o yap)
 
 (def c2o yuk)
