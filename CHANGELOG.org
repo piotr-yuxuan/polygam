@@ -48,5 +48,5 @@ get more real when you have another graph which vertices can also chose / be
 chosen.
 * TODO Vertices of B their own gutt
 * TODO Vertices of B inherit their gutt
-* TODO Keep your code in full Clojure but use ClojureScript to build a simple visual web interface to this.
+* FOCUS Keep your code in full Clojure but use ClojureScript to build a simple visual web interface to this.
 * TODO OK, now go and write a memoir about this ^^
