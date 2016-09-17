@@ -55,30 +55,7 @@ examples of expected behaviours.
 
 Consider the following tree, which arrows are from top to bottom.
 
-```
-             *O
-             a
-            / \
-           /   \
-          /     \
-         /       \
-        /         \
-       /           \
-      /             \
-      *              *X
-      b              c
-     / \            / \
-    /   \          /   \
-   /     \        /     \
-   |      |      /       *
-   |      |     /        f
-   *O     |    *O      / | \
-   d      |    e      /  |  \
-  / \     |    |     /   |   \
- *   *    *    *    *    *    *O
- g   h    i    j    k    l    m
-
-```
+![graph](./img/graph-sample.png)
 
 Each arrow stands for the parent <~> child relation. It's defined in the code by
 the relation `child`. We can extend this relation to ascendant <~> descandant:
@@ -92,15 +69,6 @@ by goal `siblingso`.
 Vertices can be elicited or rejected. Two relations embodie this is the code.
 Their names are pretty straightforward as `yap` convey a positive meaning
 (chosen amongst siblings) whilst `yuk` sounds negatively yucky. Ikks!
-
-Even if `yap` and `yuk` can't be used together yet in a coherent fashion, you
-can still manipulate them separately with two goals `yap-treeo` and `yuk-treeo`.
-The first one can return any vertex which has been elicited (yapped) or any
-child of such a vertex. It means that ignored vertices, that's to say non-yapped
-siblings of a yapped vertex can not be comprehended by `yap-treeo`. By the way,
-forgive my poor ability to name things in proper English but such an ignored
-vertex is said to be empeached. You can reach it through the relational goal
-`empeachedo`.
 
 `yuk-treeo` is the symetric goal which can accept any rejected (yukked) vertex
 of any children of such a vertex.
