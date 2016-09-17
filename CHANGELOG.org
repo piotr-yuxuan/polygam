@@ -38,7 +38,8 @@ CLOSED: [2016-09-12 Mon 23:27]
 CLOSED: [2016-09-15 Thu 00:19]
 Stop bullying poor core.logic
 No Bullshit, do real logic and wrangle against the doc
-* FOCUS Write great documentation
+* DONE Write satisfactory documentation
+CLOSED: [2016-09-17 Sat 23:03]
 * DONE Problem: a root is seen as available whatsoever
 CLOSED: [2016-09-17 Sat 21:49]
 * TODO Add another dimension (graph B) to your code
