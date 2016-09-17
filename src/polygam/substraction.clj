@@ -36,6 +36,7 @@
   [q]
   (all
     (vertex q)
+    (nafc inconsistento q)
     (nafc yuk q)
     (conda [(yap q)]
            [(fresh [a b]
@@ -57,6 +58,9 @@
                               (kino b q)
                               (nafc yuk a)
                               (yap b))]
-           [(nafc empeachedo q) (nafc yuk-treeo q)]
+           [(nafc empeachedo q) (nafc yuk-treeo q)
+            (single-matcho #(fresh [a]
+                              (kino a q)
+                              (yap a)))]
            [(empeachedo q) fail]
            [(nafc yuk-treeo q)])))

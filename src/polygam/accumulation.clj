@@ -49,22 +49,26 @@
 (defn c5o
   [q]
   (all
+   (vertex q)
    (nafc yap q)
    (nafc yuk q)
    (nafc empeachedo q)
-   (nafc
-    #(fresh [a]
-       (vertex a)
-       (kino a q)
-       (conde [(empeachedo a)]
-              [(yuk a)])))))
+   (nafc #(fresh [a]
+           (vertex a)
+           (kino a q)
+           (conde [(empeachedo a)]
+                  [(yuk a)])))
+   (single-matcho #(fresh [a] (kino a q) (yap a)))))
+
+(def c6o inconsistento)
 
 (defn availableo
   [q]
   (all
    (vertex q)
-   (nafc c2o q)
-   (nafc c3o q)
-   (or* [(c1o q)
-         (c4o q)
-         (c5o q)])))
+   (conde [(c1o q)]
+          [(c2o q) fail]
+          [(c3o q) fail]
+          [(c4o q)]
+          [(c5o q)])
+   (nafc c6o q)))
