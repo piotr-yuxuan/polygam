@@ -1,6 +1,6 @@
 # _Substraction_ algorithm
 
-![polygyny](doc/graph-sample-extended.png)
+![polygyny](img/graph-sample-extended.png)
 
 In this section, the relation `availableo` is constructed by step by
 substraction. Each step takes builds on the result of the previous one. This
