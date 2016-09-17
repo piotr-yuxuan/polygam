@@ -55,6 +55,31 @@ examples of expected behaviours.
 
 Consider the following tree, which arrows are from top to bottom.
 
+```
+             *O
+             a
+            / \
+           /   \
+          /     \
+         /       \
+        /         \
+       /           \
+      /             \
+      *              *X
+      b              c
+     / \            / \
+    /   \          /   \
+   /     \        /     \
+   |      |      /       *
+   |      |     /        f
+   *O     |    *O      / | \
+   d      |    e      /  |  \
+  / \     |    |     /   |   \
+ *   *    *    *    *    *    *O
+ g   h    i    j    k    l    m
+
+```
+
 Each arrow stands for the parent <~> child relation. It's defined in the code by
 the relation `child`. We can extend this relation to ascendant <~> descandant:
 it's the relational goal `kino`. Logic goal are used to be suffixed with a
