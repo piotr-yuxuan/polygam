@@ -44,7 +44,8 @@
 
 (defn inconsistento
   "Not perfect because allows for duplicate values. However, good enough as it
-  will be mainly used as a negation."
+  will be mainly used as a negation. Moreover, a and b should be the closest
+  nodes to q, which there are currently not => this is a bug."
   [q]
   (fresh [a b]
     (kino a q)
