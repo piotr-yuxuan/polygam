@@ -121,8 +121,8 @@ See rough explanations of the algorithms:
 Last but not least word about performance: the two strageties implemented here give:
 
 ``` Clojure
-"Elapsed time: 949.399797 msecs"
-"Elapsed time: 979.701262 msecs"
+"Elapsed time: 949.399797 msecs" ;; accumulation
+"Elapsed time: 979.701262 msecs" ;; substraction
 ```
 
 Methinks it's important to keep in mind computation time is rather sensitive to
@@ -130,8 +130,8 @@ the complexity of the problem you want to solve. For example, if you forbid a
 graph to be inconsistent, elapsed time will substantially shrink:
 
 ``` Clojure
-"Elapsed time: 633.909367 msecs"
-"Elapsed time: 432.91587 msecs"
+"Elapsed time: 633.909367 msecs" ;; accumulation
+"Elapsed time: 432.91587 msecs"  ;; substraction
 ``` 
 
 Computation time can be further reduced with the asumption of rooted tree.
