@@ -22,14 +22,9 @@
   "C4bis C4 can be rewritten: If amongst your parents can be found both yap yuk and empeached node,
   you're not available if and only if one can find one empeached parent node
   which is not parent of a yap node")
+(def c1o yap)
 
-(defn c1o
-  [q]
-  (yap q))
-
-(defn c2o
-  [q]
-  (yuk q))
+(def c2o yuk)
 
 (defn c3o
   [q]
