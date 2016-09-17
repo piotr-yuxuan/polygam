@@ -57,8 +57,8 @@ Consider the following tree, which arrows are from top to bottom.
 
 ![graph](./img/graph-sample.png)
 
-Each arrow stands for the parent <~> child relation. It's defined in the code by
-the relation `child`. We can extend this relation to ascendant <~> descandant:
+Each arrow stands for the parent / child relation. It's defined in the code by
+the relation `child`. We can extend this relation to ascendant / descandant:
 it's the relational goal `kino`. Logic goal are used to be suffixed with a
 superscript `o` (or another vowel), which we render in the code by a standard
 letter `o`. The name `kino` comes from English nouns kin and kinship which
@@ -68,31 +68,23 @@ by goal `siblingso`.
 
 Vertices can be elicited or rejected. Two relations embodie this is the code.
 Their names are pretty straightforward as `yap` convey a positive meaning
-(chosen amongst siblings) whilst `yuk` sounds negatively yucky. Ikks!
-
-`yuk-treeo` is the symetric goal which can accept any rejected (yukked) vertex
+(chosen amongst siblings) whilst `yuk` sounds negatively yucky. Ikks! The goal `yap-treeo` accepts any node which is elicited or which descend from an elicited node. `yuk-treeo` is the symetric goal which can accept any rejected (yukked) vertex
 of any children of such a vertex.
 
 Some subtlety appears when intertwin yukked and yapped vertices.
 
 ### Simple visual example
 
-Consider the following graph.
+Consider the same graph.
 
 Vertices `a`, `b`, `c`, `h`, `j`, `k` and `n` have been added some marks. Nodes
 `a`, `c`, `j`, `k` and `n` are marked with blue, meaning they have been elicited
 (yapped). Others are explicitly rejected.
 
-Let's describe the expected behaviour of aforedefined goals:
+Let's describe the expected behaviour of the code: what will it reply to the question "Which nodes are available"?
 
- * `yap-treeo` allow nodes `a`, `c`, `n`, `q`, `g`, `p`, `j` and `k` since they
-   all descend from `a` which has been elicited and are not being empeached.
-   Vertex `m`, `i`, `l` and their children, if any, are ignored because of
-   empeachement (for `m`, `i`, `l`).
- * `empeachedo` should hence return the previous ignores vertices: `m`, `i` and
-   finally `l`.
- * `yuk-treeo` should match vertices `b`, `d`, `e`, `f`, `r`, `ì` and `l`
-   because nodes `b` and `h` are rejected (yukked).
+* Node `a` is in blue then it's available
+* `a` has three children: `b`, `m` and `c`. Node `b`is explicitly rejected then is coloured in red.
 
 When looking for general answer, which are available nodes to be chosen? This is
 left as exercise for the reader.
