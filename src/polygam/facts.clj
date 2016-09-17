@@ -23,7 +23,8 @@
   [:a :b :c :d :e :f :g :h :i :j
    :l :m :n :o :p :q :r :s :t
    :k :kk
-   :u :v :w :x :y :z :a° :b° :p°])
+   :u :v :w :x :y :z :a° :b° :p°
+   :c° :d° :e° :f° :g° :h° :i° :j° :l° :k° :m° :n° :o°])
 
 (def definitions
   (reduce #(db-fact % vertex %2) (db) vertices))
@@ -43,7 +44,13 @@
    :t [:u :v :w]
    :w [:x :y]
    :y [:z]
-   :z [:a° :b° :p°]})
+   :z [:a° :b° :p°]
+   :c° [:d° :f° :o°]
+   :d° [:e°:w]
+   :f° [:g° :n°]
+   :g° [:h° :m°]
+   :h° [:i°]
+   :i° [:j° :l° :k° :p°]})
 
 (def kin
   (reduce #(db-fact % child (first %2) (second %2))
@@ -57,6 +64,9 @@
    [yap :m]
    [yap :z]
    [yap :k]
+   [yap :g°]
+   [yap :k°]
 
    [yuk :p]
-   [yuk :w]))
+   [yuk :w]
+   [yuk :i°]))
