@@ -42,3 +42,14 @@
   [goal]
   (nafc #(nafc goal)))
 
+(defn inconsistento
+  "Not perfect because allows for duplicate values. However, good enough as it
+  will be mainly used as a negation."
+  [q]
+  (fresh [a b]
+    (kino a q)
+    (kino b q)
+    (nafc kino a b)
+    (nafc kino b a)
+    (yap a)
+    (yuk b)))
