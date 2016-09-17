@@ -79,8 +79,6 @@ Some subtlety appears when intertwin yukked and yapped vertices.
 
 Consider the following graph.
 
-![graph](./img/graph-sample.png)
-
 Vertices `a`, `b`, `c`, `h`, `j`, `k` and `n` have been added some marks. Nodes
 `a`, `c`, `j`, `k` and `n` are marked with blue, meaning they have been elicited
 (yapped). Others are explicitly rejected.
