@@ -1,5 +1,7 @@
 # _Accumulation_ algorithm
 
+![big-graph](../img/graph-sample-extended.png)
+
 This algorithm makes use of `conde` whose doc states:
 
 > Logical disjunction of the clauses. The first goal in

@@ -112,12 +112,14 @@ left as exercise for the reader.
 
 ### Step-by-step examples
 
-See rough explanations of the algorithms:
+The two strategies presented here are explained with the help of the following graph.
 
-* The [substraction](./doc/substraction.md) algorithm uses soft-cut strategy to
+* The [substraction](./docs/substraction.md) algorithm uses soft-cut strategy to
   remove values from the initial set untill it matches the answer.
-* The [accumulation](./doc/accumulation.md) algorithm uses logical disjunction
+* The [accumulation](./docs/accumulation.md) algorithm uses logical disjunction
   to unfold possible case and accept or reject values.
+
+![big-graph](./img/graph-sample-extended.png)
 
 ## Performance
 
