@@ -68,8 +68,10 @@ by goal `siblingso`.
 
 Vertices can be elicited or rejected. Two relations embodie this is the code.
 Their names are pretty straightforward as `yap` convey a positive meaning
-(chosen amongst siblings) whilst `yuk` sounds negatively yucky. Ikks! The goal `yap-treeo` accepts any node which is elicited or which descend from an elicited node. `yuk-treeo` is the symetric goal which can accept any rejected (yukked) vertex
-of any children of such a vertex.
+(chosen amongst siblings) whilst `yuk` sounds negatively yucky. Ikks! The goal
+`yap-treeo` accepts any node which is elicited or which descend from an elicited
+node. `yuk-treeo` is the symetric goal which can accept any rejected (yukked)
+vertex of any children of such a vertex.
 
 Some subtlety appears when intertwin yukked and yapped vertices.
 
@@ -81,10 +83,28 @@ Vertices `a`, `b`, `c`, `h`, `j`, `k` and `n` have been added some marks. Nodes
 `a`, `c`, `j`, `k` and `n` are marked with blue, meaning they have been elicited
 (yapped). Others are explicitly rejected.
 
-Let's describe the expected behaviour of the code: what will it reply to the question "Which nodes are available"?
+Let's describe the expected behaviour of the code: what will it reply to the
+question "Which nodes are available"?
 
 * Node `a` is in blue then it's available
-* `a` has three children: `b`, `m` and `c`. Node `b`is explicitly rejected then is coloured in red.
+* `a` has three children: `b`, `m` and `c`. Node `b`is explicitly rejected then
+  is coloured in red. Node `m` should be available but node `c` has been
+  explicitly chosen so it has precedence: node `m` is not available and node `c`
+  is available.
+* => so far, available nodes are `a` and `c`
+* Node `b` is explicitly rejected so are its children. Neither `d`, `e`, `f` or
+  `r` will be available.
+* => so far, available nodes are still `a` and `c`
+* Node `m` is not available and node `o` is a regular node so is not available
+  either. However, node `n` has been explicitly chosen so is available. The
+  descandants of node `n` are also available because none of them has been
+  rejected or elicited against another one.
+* => so far, available vertices are now `a`, `c`, `n`, `q`, `g` and `p`
+* Node `c` is available so it child `h` should also be, however the latter node
+  has been explicitly rejected. No vertex is added.
+* Children of an explicitly rejected node should not be available, however `j`
+  and `k` have been explicitly chosen so they are available.
+* => finally available vertices are `a`, `c`, `n`, `q`, `g` and `p`
 
 When looking for general answer, which are available nodes to be chosen? This is
 left as exercise for the reader.
