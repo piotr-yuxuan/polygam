@@ -36,3 +36,9 @@
      (yap z)
      (siblingso q z))
    (nafc yap q)))
+
+(defn single-matcho
+  "Reduce multiple matches to a single one but get the computation much slower"
+  [goal]
+  (nafc #(nafc goal)))
+
