@@ -1,10 +1,7 @@
 (ns polygam.common
-  (:require [clojure.core.logic :only    [== >= <= > < = !=] :as l])
-  (:use     [clojure.core.logic :exclude [== >= <= > < = !=]]
-            [clojure.core.logic.pldb]
-            [polygam.facts])
-  (:require [clojure.core.logic.arithmetic :as ar]
-            [clojure.core.logic.fd :as fd]))
+  (:require [clojure.core.logic :only [== >= <= > < = !=] :as l])
+  (:use [clojure.core.logic :exclude [== >= <= > < = !=]] [clojure.core.logic.pldb] [polygam.facts])
+  (:require [clojure.core.logic :only [== >= <= > < = !=] :as l]))
 
 (defn- order-relationo
   "Abstract the general pattern of a strict order relation in a logic,

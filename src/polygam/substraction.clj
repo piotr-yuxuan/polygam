@@ -1,11 +1,7 @@
 (ns polygam.substraction
-  (:require [clojure.core.logic :only    [== >= <= > < = !=] :as l])
-  (:use     [clojure.core.logic :exclude [== >= <= > < = !=]]
-            [clojure.core.logic.pldb]
-            [polygam.facts]
-            [polygam.common])
-  (:require [clojure.core.logic.arithmetic :as ar]
-            [clojure.core.logic.fd :as fd]))
+  (:require [clojure.core.logic :only [== >= <= > < = !=] :as l])
+  (:use [clojure.core.logic :exclude [== >= <= > < = !=]] [clojure.core.logic.pldb] [polygam.facts] [polygam.common])
+  (:require [clojure.core.logic :only [== >= <= > < = !=] :as l]))
 
 (defn tope
   "no parents"
