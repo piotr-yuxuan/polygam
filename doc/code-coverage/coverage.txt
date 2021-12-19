@@ -1,0 +1,6 @@
+Lines Non-Blank Instrumented Covered Partial
+   72        62           47      45       2 polygam/facts.clj
+   56        50           31      31       0 polygam/common.clj
+   66        62           48      38       1 polygam/substraction.clj
+   59        52           41      41       0 polygam/accumulation.clj
+   28        26           13      11       2 polygam/core.clj

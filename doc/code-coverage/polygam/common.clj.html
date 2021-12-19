@@ -1,0 +1,176 @@
+<html>
+ <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="../coverage.css"/>  <title> polygam/common.clj </title>
+ </head>
+ <body>
+<span class="covered" title="1 out of 1 forms covered">
+                001&nbsp;&nbsp;(ns&nbsp;polygam.common
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                002&nbsp;&nbsp;&nbsp;&nbsp;(:require&nbsp;[clojure.core.logic&nbsp;:only&nbsp;&nbsp;&nbsp;&nbsp;[==&nbsp;&gt;=&nbsp;&lt;=&nbsp;&gt;&nbsp;&lt;&nbsp;=&nbsp;!=]&nbsp;:as&nbsp;l])
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                003&nbsp;&nbsp;&nbsp;&nbsp;(:use&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[clojure.core.logic&nbsp;:exclude&nbsp;[==&nbsp;&gt;=&nbsp;&lt;=&nbsp;&gt;&nbsp;&lt;&nbsp;=&nbsp;!=]]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                004&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[clojure.core.logic.pldb]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                005&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[polygam.facts])
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                006&nbsp;&nbsp;&nbsp;&nbsp;(:require&nbsp;[clojure.core.logic.arithmetic&nbsp;:as&nbsp;ar]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                007&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[clojure.core.logic.fd&nbsp;:as&nbsp;fd]))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                008&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                009&nbsp;&nbsp;(defn-&nbsp;order-relationo
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                010&nbsp;&nbsp;&nbsp;&nbsp;&quot;Abstract&nbsp;the&nbsp;general&nbsp;pattern&nbsp;of&nbsp;a&nbsp;strict&nbsp;order&nbsp;relation&nbsp;in&nbsp;a&nbsp;logic,
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                011&nbsp;&nbsp;&nbsp;&nbsp;relational&nbsp;way.&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                012&nbsp;&nbsp;&nbsp;&nbsp;[relation&nbsp;x&nbsp;y]
+                </span><br/>
+<span class="covered" title="11 out of 11 forms covered">
+                013&nbsp;&nbsp;&nbsp;&nbsp;(conde
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                014&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(relation&nbsp;x&nbsp;y)]
+                </span><br/>
+<span class="covered" title="11 out of 11 forms covered">
+                015&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(fresh&nbsp;[z]
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                016&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(relation&nbsp;x&nbsp;z)
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                017&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(order-relationo&nbsp;relation&nbsp;z&nbsp;y))]))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                018&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                019&nbsp;&nbsp;(def&nbsp;kino
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                020&nbsp;&nbsp;&nbsp;&nbsp;&quot;A&nbsp;goal&nbsp;where&nbsp;the&nbsp;two&nbsp;inputs&nbsp;x&nbsp;and&nbsp;y&nbsp;share&nbsp;kinship:&nbsp;x&nbsp;is&nbsp;an&nbsp;ancestor&nbsp;of&nbsp;y&nbsp;and
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                021&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;a&nbsp;descandant&nbsp;of&nbsp;x.&quot;
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                022&nbsp;&nbsp;&nbsp;&nbsp;(partial&nbsp;order-relationo&nbsp;child))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                023&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                024&nbsp;&nbsp;(defn&nbsp;siblingso
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                025&nbsp;&nbsp;&nbsp;&nbsp;[x&nbsp;s]
+                </span><br/>
+<span class="covered" title="13 out of 13 forms covered">
+                026&nbsp;&nbsp;&nbsp;&nbsp;(fresh&nbsp;[z]
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                027&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(child&nbsp;z&nbsp;x)
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                028&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(child&nbsp;z&nbsp;s)
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                029&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(l&#x2F;!=&nbsp;x&nbsp;s)))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                030&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                031&nbsp;&nbsp;(defn&nbsp;empeachedo
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                032&nbsp;&nbsp;&nbsp;&nbsp;[q]
+                </span><br/>
+<span class="covered" title="6 out of 6 forms covered">
+                033&nbsp;&nbsp;&nbsp;&nbsp;(all
+                </span><br/>
+<span class="covered" title="13 out of 13 forms covered">
+                034&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(fresh&nbsp;[z]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                035&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(vertex&nbsp;z)
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                036&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(yap&nbsp;z)
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                037&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(siblingso&nbsp;q&nbsp;z))
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                038&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(nafc&nbsp;yap&nbsp;q)))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                039&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                040&nbsp;&nbsp;(defn&nbsp;single-matcho
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                041&nbsp;&nbsp;&nbsp;&nbsp;&quot;Reduce&nbsp;multiple&nbsp;matches&nbsp;to&nbsp;a&nbsp;single&nbsp;one&nbsp;but&nbsp;get&nbsp;the&nbsp;computation&nbsp;much&nbsp;slower&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                042&nbsp;&nbsp;&nbsp;&nbsp;[goal]
+                </span><br/>
+<span class="covered" title="6 out of 6 forms covered">
+                043&nbsp;&nbsp;&nbsp;&nbsp;(nafc&nbsp;#(nafc&nbsp;goal)))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                044&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                045&nbsp;&nbsp;(defn&nbsp;inconsistento
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                046&nbsp;&nbsp;&nbsp;&nbsp;&quot;Not&nbsp;perfect&nbsp;because&nbsp;allows&nbsp;for&nbsp;duplicate&nbsp;values.&nbsp;However,&nbsp;good&nbsp;enough&nbsp;as&nbsp;it
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                047&nbsp;&nbsp;&nbsp;&nbsp;will&nbsp;be&nbsp;mainly&nbsp;used&nbsp;as&nbsp;a&nbsp;negation.&nbsp;Moreover,&nbsp;a&nbsp;and&nbsp;b&nbsp;should&nbsp;be&nbsp;the&nbsp;closest
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                048&nbsp;&nbsp;&nbsp;&nbsp;nodes&nbsp;to&nbsp;q,&nbsp;which&nbsp;there&nbsp;are&nbsp;currently&nbsp;not&nbsp;=&gt;&nbsp;this&nbsp;is&nbsp;a&nbsp;bug.&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                049&nbsp;&nbsp;&nbsp;&nbsp;[q]
+                </span><br/>
+<span class="covered" title="22 out of 22 forms covered">
+                050&nbsp;&nbsp;&nbsp;&nbsp;(fresh&nbsp;[a&nbsp;b]
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                051&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(kino&nbsp;a&nbsp;q)
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                052&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(kino&nbsp;b&nbsp;q)
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                053&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(nafc&nbsp;kino&nbsp;a&nbsp;b)
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                054&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(nafc&nbsp;kino&nbsp;b&nbsp;a)
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                055&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(yap&nbsp;a)
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                056&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(yuk&nbsp;b)))
+                </span><br/>
+ </body>
+</html>

@@ -1,0 +1,224 @@
+<html>
+ <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="../coverage.css"/>  <title> polygam/facts.clj </title>
+ </head>
+ <body>
+<span class="covered" title="1 out of 1 forms covered">
+                001&nbsp;&nbsp;(ns&nbsp;polygam.facts
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                002&nbsp;&nbsp;&nbsp;&nbsp;(:require&nbsp;[clojure.core.logic&nbsp;:only&nbsp;&nbsp;&nbsp;&nbsp;[==&nbsp;&gt;=&nbsp;&lt;=&nbsp;&gt;&nbsp;&lt;&nbsp;=&nbsp;!=]&nbsp;:as&nbsp;l])
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                003&nbsp;&nbsp;&nbsp;&nbsp;(:use&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[clojure.core.logic&nbsp;:exclude&nbsp;[==&nbsp;&gt;=&nbsp;&lt;=&nbsp;&gt;&nbsp;&lt;&nbsp;=&nbsp;!=]]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                004&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[clojure.core.logic.pldb])
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                005&nbsp;&nbsp;&nbsp;&nbsp;(:require&nbsp;[clojure.core.logic.arithmetic&nbsp;:as&nbsp;ar]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                006&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[clojure.core.logic.fd&nbsp;:as&nbsp;fd])
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                007&nbsp;&nbsp;&nbsp;&nbsp;(:gen-class))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                008&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="55 out of 55 forms covered">
+                009&nbsp;&nbsp;(db-rel&nbsp;vertex
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                010&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^:index&nbsp;x)
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                011&nbsp;&nbsp;
+                </span><br/>
+<span class="partial" title="51 out of 55 forms covered">
+                012&nbsp;&nbsp;(db-rel&nbsp;yap
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                013&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^:index&nbsp;x)
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                014&nbsp;&nbsp;
+                </span><br/>
+<span class="partial" title="51 out of 55 forms covered">
+                015&nbsp;&nbsp;(db-rel&nbsp;yuk
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                016&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^:index&nbsp;x)
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                017&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="57 out of 57 forms covered">
+                018&nbsp;&nbsp;(db-rel&nbsp;^{:doc&nbsp;&quot;Relationship&nbsp;for&nbsp;parents&quot;}
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                019&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;child&nbsp;^:index&nbsp;x
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                020&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^:index&nbsp;y)
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                021&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                022&nbsp;&nbsp;(def&nbsp;vertices
+                </span><br/>
+<span class="covered" title="44 out of 44 forms covered">
+                023&nbsp;&nbsp;&nbsp;&nbsp;[:a&nbsp;:b&nbsp;:c&nbsp;:d&nbsp;:e&nbsp;:f&nbsp;:g&nbsp;:h&nbsp;:i&nbsp;:j
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                024&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:l&nbsp;:m&nbsp;:n&nbsp;:o&nbsp;:p&nbsp;:q&nbsp;:r&nbsp;:s&nbsp;:t
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                025&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:k&nbsp;:kk
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                026&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:u&nbsp;:v&nbsp;:w&nbsp;:x&nbsp;:y&nbsp;:z&nbsp;:a°&nbsp;:b°&nbsp;:p°
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                027&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:c°&nbsp;:d°&nbsp;:e°&nbsp;:f°&nbsp;:g°&nbsp;:h°&nbsp;:i°&nbsp;:j°&nbsp;:l°&nbsp;:k°&nbsp;:m°&nbsp;:n°&nbsp;:o°])
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                028&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                029&nbsp;&nbsp;(def&nbsp;definitions
+                </span><br/>
+<span class="covered" title="11 out of 11 forms covered">
+                030&nbsp;&nbsp;&nbsp;&nbsp;(reduce&nbsp;#(db-fact&nbsp;%&nbsp;vertex&nbsp;%2)&nbsp;(db)&nbsp;vertices))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                031&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                032&nbsp;&nbsp;(def&nbsp;kinship
+                </span><br/>
+<span class="covered" title="26 out of 26 forms covered">
+                033&nbsp;&nbsp;&nbsp;&nbsp;{:a&nbsp;[:b&nbsp;:i&nbsp;:t]
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                034&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:b&nbsp;[:c&nbsp;:d&nbsp;:g]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                035&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:d&nbsp;[:e&nbsp;:f]
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                036&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:g&nbsp;[:h]
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                037&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:h&nbsp;[:k]
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                038&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:k&nbsp;[:kk]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                039&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:i&nbsp;[:j&nbsp;:l]
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                040&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:l&nbsp;[:m&nbsp;:p&nbsp;:r]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                041&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:m&nbsp;[:n&nbsp;:o]
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                042&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:p&nbsp;[:q]
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                043&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:r&nbsp;[:s]
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                044&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:t&nbsp;[:u&nbsp;:v&nbsp;:w]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                045&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:w&nbsp;[:x&nbsp;:y]
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                046&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:y&nbsp;[:z]
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                047&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:z&nbsp;[:a°&nbsp;:b°&nbsp;:p°]
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                048&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:c°&nbsp;[:d°&nbsp;:f°&nbsp;:o°]
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                049&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:d°&nbsp;[:e°:w]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                050&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:f°&nbsp;[:g°&nbsp;:n°]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                051&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:g°&nbsp;[:h°&nbsp;:m°]
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                052&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:h°&nbsp;[:i°]
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                053&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:i°&nbsp;[:j°&nbsp;:l°&nbsp;:k°&nbsp;:p°]})
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                054&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                055&nbsp;&nbsp;(def&nbsp;kin
+                </span><br/>
+<span class="covered" title="13 out of 13 forms covered">
+                056&nbsp;&nbsp;&nbsp;&nbsp;(reduce&nbsp;#(db-fact&nbsp;%&nbsp;child&nbsp;(first&nbsp;%2)&nbsp;(second&nbsp;%2))
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                057&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(db)
+                </span><br/>
+<span class="covered" title="12 out of 12 forms covered">
+                058&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(mapcat&nbsp;(fn&nbsp;[[k&nbsp;vv]]&nbsp;(map&nbsp;#(do&nbsp;[k&nbsp;%])&nbsp;vv))&nbsp;kinship)))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                059&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                060&nbsp;&nbsp;(def&nbsp;favour
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                061&nbsp;&nbsp;&nbsp;&nbsp;(db
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                062&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[yap&nbsp;:a]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                063&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[yap&nbsp;:d]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                064&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[yap&nbsp;:m]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                065&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[yap&nbsp;:z]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                066&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[yap&nbsp;:k]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                067&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[yap&nbsp;:g°]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                068&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[yap&nbsp;:k°]
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                069&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                070&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[yuk&nbsp;:p]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                071&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[yuk&nbsp;:w]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                072&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[yuk&nbsp;:i°]))
+                </span><br/>
+ </body>
+</html>
