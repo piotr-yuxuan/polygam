@@ -1,5 +1,6 @@
 (defproject polygam "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
+  :github/private? false
   :url "http://example.com/FIXME"
   :license {:name "GNU General Public License v3"
             :url "https://www.gnu.org/licenses/gpl.html"}
