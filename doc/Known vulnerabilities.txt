@@ -1,12 +1,8 @@
-Checking dependencies for stdin  ...
-  using nvd-clojure:  and dependency-check: 6.5.0
-+----------------+----------------+
-| dependency     | status         |
-+----------------+----------------+
-| h2-1.4.199.jar | CVE-2021-23463 |
-+----------------+----------------+
+Checking dependencies for stdin...
+  using nvd-clojure: 2.5.0 and dependency-check: 7.0.4
 
-1 vulnerabilities detected. Severity: MEDIUM
+0 vulnerabilities detected. Severity: NONE
 Detailed reports saved in: /home/runner/work/polygam/polygam/target/nvd
+HTML report : /home/runner/work/polygam/polygam/target/nvd/dependency-check-report.html
 
    *** THIS REPORT IS WITHOUT WARRANTY ***
