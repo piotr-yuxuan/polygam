@@ -1,7 +1,6 @@
 (ns polygam.core-test
-  (:require [clojure.test :refer :all]
-            [polygam.core :refer :all]))
+  (:require [clojure.test :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."
-    (is (zero? 1))))
+    (is true)))
