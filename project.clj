@@ -13,7 +13,7 @@
   :main ^:skip-aot polygam.core
   :profiles {:github {:github/topics ["clojure" "core-logic" "logic-programming"]
                       :github/private? false}
-             :provided {:dependencies [[org.clojure/clojure "1.12.0-alpha4"]]}
+             :provided {:dependencies [[org.clojure/clojure "1.12.0-alpha5"]]}
              :dev {:global-vars {*warn-on-reflection* true}}
              :jar {:jvm-opts ["-Dclojure.compiler.disable-locals-clearing=false"
                               "-Dclojure.compiler.direct-linking=true"]}}
