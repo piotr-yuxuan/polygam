@@ -9,7 +9,7 @@
   :pom-addition [:developers [:developer
                               [:name "胡雨軒 Петр"]
                               [:url "https://github.com/piotr-yuxuan"]]]
-  :dependencies [[org.clojure/core.logic "1.0.1"]]
+  :dependencies [[org.clojure/core.logic "1.1.0"]]
   :main ^:skip-aot polygam.core
   :profiles {:github {:github/topics ["clojure" "core-logic" "logic-programming"]
                       :github/private? false}
